@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Data</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* margin-top: 35%; */
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 28px; /* Slightly smaller title font */
+        }
+
+        .food-item {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .food-item img {
+            max-width: 80%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .food-item h1 {
+            font-size: 18px; /* Medium font for food details */
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .food-item .price {
+            color: #5cb85c;
+            font-weight: bold;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Food Data Table</h1>
+        <% data.map((el)=>{ %>
+        <div class="food-item">
+            <h1><%= el.foodname %></h1>
+            <img src="<%= el.foodImg %>" alt="<%= el.foodname %> Image">
+            <h1><%= el.recipe %></h1>
+            <h1 class="price">₹<%= el.price %></h1>
+        </div>
+        <% }) %>
+    </div>
+</body>
+</html>

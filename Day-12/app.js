@@ -3,6 +3,8 @@ const connect = require("./config/db")
 const BookRouter = require("./Routes/bookRoutes")
 const UserRouter = require("./Routes/userRoutes")
 
+const app=express()
+
 app.set('view engine','ejs')
 app.use(express.urlencoded({extended:true}))
 app.use(express.static('public'))

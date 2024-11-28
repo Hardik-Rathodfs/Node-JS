@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 const Home = () => {
-  const [movies, setMovies] = useState([]); // Initialize state with an empty array
-  const [error, setError] = useState(null); // Track fetch errors
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -12,30 +12,40 @@ const Home = () => {
           throw new Error('Failed to fetch movies');
         }
         const data = await response.json();
-        setMovies(data); // Update state with fetched movies
+        setMovies(data);
       } catch (error) {
-        setError(error.message); // Update error state if fetch fails
+        setError(error.message);
       }
     };
-
-    fetchMovies(); // Invoke fetch function inside useEffect
-  }, []); // Empty dependency array to run the effect only once
+    fetchMovies();
+  }, []);
 
   return (
-    <div>
-      <h2>Movies List</h2>
+    <div className="container">
+      <h2 className="title">Movies List</h2>
       {error ? (
-        <p style={{ color: 'red' }}>{error}</p> // Display error message
+        <p className="error">{error}</p>
       ) : (
-        <ul>
+        <div className="card-grid">
           {movies.length > 0 ? (
             movies.map((movie, index) => (
-              <li key={index}>{movie.title}</li> // Render movie list
+              <div key={index} className="card">
+                <img
+                  src={`http://localhost:8080/assets/${movie.poster}`}
+                  alt={movie.title}
+                  className="card-img" width="150px" heigth="150px"
+                />
+                <div className="card-content">
+                  <h3 className="card-title">{movie.title}</h3>
+                  <p><strong>Year:</strong> {movie.year}</p>
+                  <p><strong>Rating:</strong> {movie.rating}/10</p>
+                </div>
+              </div>
             ))
           ) : (
             <p>Loading...</p>
           )}
-        </ul>
+        </div>
       )}
     </div>
   );

@@ -13,6 +13,8 @@ const Home = () => {
         }
         const data = await response.json();
         setMovies(data);
+        console.log(data);
+        
       } catch (error) {
         setError(error.message);
       }

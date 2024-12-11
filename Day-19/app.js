@@ -18,7 +18,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 
-app.use("/user",UserRouter)
+app.use("/",UserRouter)
 
 app.listen(8080,()=>{
     connect()

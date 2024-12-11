@@ -25,7 +25,7 @@ passport.serializeUser((user,done)=>{
 })
 
 passport.deserializeUser(async(id,done)=>{
-    let user = await UserModel.findByID(id)
+    let user = await UserModel.findById(id)
     done(null,user)
 })
 

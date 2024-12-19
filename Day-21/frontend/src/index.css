@@ -1,0 +1,387 @@
+:root {
+  /* Light Theme Colors */
+  --primary-light: #4a90e2;
+  --background-light: #f5f5f7;
+  --glass-light: rgba(255, 255, 255, 0.7);
+  --text-light: #333333;
+  --border-light: #dcdcdc;
+
+
+
+  
+  /* Dark Theme Colors */
+  --primary-dark: #3a7bd5;
+  --background-dark: #1c1c1e;
+  --glass-dark: rgba(28, 28, 30, 0.6);
+  --text-dark: #e0e0e0;
+  --border-dark: #4a4a4a;
+
+  /* General */
+  --transition-speed: 0.3s;
+  --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --shadow-dark: 0 10px 30px rgba(255, 255, 255, 0.1);
+}
+
+/* Smooth Theme Transition */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+  background-color: var(--background-light);
+  color: var(--text-light);
+  margin: 0;
+  padding: 0;
+}
+
+body.dark-mode {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+}
+
+/* Login and Signup Container */
+.login-container, .signup-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  min-height:700px;
+  padding: 40px;
+  margin-top: 1%;
+  background: var(--glass-light);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  box-shadow: var(--shadow-light);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-speed);
+}
+
+body.dark-mode .login-container,
+body.dark-mode .signup-container {
+  background: var(--glass-dark);
+  border-color: var(--border-dark);
+  box-shadow: var(--shadow-dark);
+}
+
+/* Animated Background */
+.login-container::before, .signup-container::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -20%;
+  width: 150%;
+  height: 100%;
+  background: radial-gradient(circle, var(--primary-light), transparent);
+  opacity: 0.1;
+  z-index: -1;
+  animation: rotate 5s linear infinite;
+}
+
+body.dark-mode .login-container::before, 
+body.dark-mode .signup-container::before {
+  background: radial-gradient(circle, var(--primary-dark), transparent);
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Form Styles */
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  z-index: 2;
+  position: relative;
+}
+
+.input-field {
+  margin: 12px 0;
+  padding: 15px;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 16px;
+  outline: none;
+  transition: all var(--transition-speed);
+}
+
+body.dark-mode .input-field {
+  background-color: rgba(45, 45, 45, 0.6);
+  border-color: var(--border-dark);
+  color: var(--text-dark);
+}
+
+.input-field:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
+}
+
+body.dark-mode .input-field:focus {
+  border-color: var(--primary-dark);
+  box-shadow: 0 0 10px rgba(58, 123, 213, 0.4);
+}
+
+/* Submit Button */
+.submit-button {
+  padding: 15px;
+  background-color: var(--primary-light);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  width: 70%;
+  margin: auto;
+  transition: all var(--transition-speed);
+  position: relative;
+  overflow: hidden;
+}
+
+body.dark-mode .submit-button {
+  background-color: var(--primary-dark);
+}
+
+.submit-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.3), 
+    transparent
+  );
+  transition: all var(--transition-speed);
+}
+
+.submit-button:hover::before {
+  left: 100%;
+}
+
+.submit-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(74, 144, 226, 0.3);
+}
+
+/* Links */
+p {
+  margin-top: 15px;
+  font-size: 14px;
+  transition: color var(--transition-speed);
+}
+
+a {
+  color: var(--primary-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-speed);
+}
+
+body.dark-mode a {
+  color: var(--primary-dark);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .login-container, 
+  .signup-container {
+    padding: 20px;
+    border-radius: 15px;
+  }
+}
+
+
+/*  */
+
+/* Modal Styles */
+/* Modal Styling */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background */
+  opacity: 0; /* Initially invisible */
+  animation: fadeIn 0.5s forwards; /* Fade-in animation */
+}
+
+/* Modal Content */
+.modal-content {
+  background: var(--glass-light);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  transform: translateX(-100%); /* Start off-screen (left) */
+  animation: slideIn 0.5s forwards ease-out; /* Slide-in animation */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease-in-out;
+}
+
+body.dark-mode .modal-content {
+  background: var(--glass-dark);
+}
+
+/* Close Button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--text-light);
+  cursor: pointer;
+}
+
+body.dark-mode .close {
+  color: var(--text-dark);
+}
+
+.close:hover {
+  color: #ff4d4f; /* Highlight close button on hover */
+}
+
+/* Input Fields */
+.input-field2 {
+  margin: 15px ;
+  padding: 12px;
+  width: 50%;
+  margin-left: 20%;
+  text-align: center;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+.cp{
+  text-align: center;
+}
+.input-field2:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+}
+
+body.dark-mode .input-field2 {
+  background-color: rgba(45, 45, 45, 0.8);
+  color: var(--text-dark);
+}
+
+body.dark-mode .input-field2:focus {
+  border-color: var(--primary-dark);
+}
+
+/* Submit Button */
+.submit-button2 {
+  padding: 12px;
+  background-color: var(--primary-light);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  margin-left: 40%;
+}
+
+.submit-button2:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px rgba(74, 144, 226, 0.3);
+}
+
+/* Keyframe Animations */
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Change Password Button */
+.change-password-button {
+  padding: 12px 20px; /* Vertical and horizontal padding */
+background-color: #4a90e2;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  border: none; /* Remove default border */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer;
+  letter-spacing: 1px; /* Add slight spacing */
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden; /* For animation effect */
+}
+
+body.dark-mode .change-password-button {
+  background-color: var(--primary-dark); /* Dark mode background */
+  color: var(--text-dark);
+}
+
+.change-password-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: all 0.4s ease-in-out;
+}
+
+.change-password-button:hover::before {
+  left: 100%; /* Animate gradient on hover */
+}
+
+.change-password-button:hover {
+  background-color: var(--primary-dark); /* Darker shade on hover */
+  transform: translateY(-3px); /* Slight lift effect */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.change-password-button:active {
+  transform: translateY(1px); /* Push-down effect on click */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

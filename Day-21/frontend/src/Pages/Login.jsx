@@ -30,29 +30,18 @@ import Popover from './Popover'; // Import your Popover component
       setState({ ...state, [name]: value });
     };
   
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      axios
-        .post("http://localhost:8080/login", state)
+    const handleSubmit = (E) => {
+      E.preventDefault()
+      axios.post("http://localhost:8080/register", state)
         .then((Res) => {
-          console.log(Res);
-          let a = jwtDecode(Res.data.token);
-          console.log(a);
-          localStorage.setItem("token", Res.data.token);
-          toast.success("Login successful!", { autoClose: 3000 });
+          console.log(Res)
+          toast.success("Registration successful!"); // Toast for successful registration
           navigate('/');
+        }).catch((err) => {
+          console.log(err)
+          toast.error("Registration failed!"); // Toast for registration failure
         })
-        .catch((err) => {
-          console.error("Login error:", err);
-          if (err.response) {
-            toast.error(`Error: ${err.response.data.message || "Login failed!"}`, { autoClose: 3000 });
-          } else if (err.request) {
-            toast.error("Error: No response from server.", { autoClose: 3000 });
-          } else {
-            toast.error(`Error: ${err.message}`, { autoClose: 3000 });
-          }
-        });
-    };
+    }
 
     
 

@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React,{useState} from 'react'
+import { toast, ToastContainer } from 'react-toastify';
 
 const popover = () => {
     const [changepass, setchangepass] = useState({
@@ -21,33 +23,27 @@ const popover = () => {
         setchangepass({ ...changepass, [name]: value });
       };
   
-      const submit=(e)=>{
-        e.preventDefault()
-        fetch(`http://localhost:8080/changepassword`,{
-          method : "POST",
-          headers : {
-             "Content-Type" : "application/json"
-          },
-          body : JSON.stringify(changepass)
-        })
-        .then((Res)=>Res.json())
+      const handleSubmit = (E) => {
+        E.preventDefault()
+        axios.post("http://localhost:8080/changepassword", changepass)
           .then((Res) => {
-              console.log(Res);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-  
-  
+            console.log(Res)
+            toast.success("Registration successful!"); // Toast for successful registration
+            navigate('/');
+          }).catch((err) => {
+            console.log(err)
+            toast.error("Registration failed!"); // Toast for registration failure
+          })
       }
 
   return (
     <>
     <div className="modal">
+    <ToastContainer /> {/* Add ToastContainer to render toasts */}
           <div className="modal-content">
             <span className="close" onClick={toggleModal}>&times;</span>
             <h2 className='cp'>Change Password</h2>
-            <form onSubmit={submit}>
+            <form onSubmit={handleSubmit}>
             <input type="text" placeholder="Email" onChange={handleChangee} name='email' required className="input-field2" />
             <input type="password" placeholder="Old Password" onChange={handleChangee} name='oldpassword' required className="input-field2" />
             <input type="password" placeholder="New Password" onChange={handleChangee} name='newpassword' required className="input-field2" />

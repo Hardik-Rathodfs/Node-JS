@@ -23,11 +23,12 @@ const Signup = () => {
     axios.post("http://localhost:8080/register", state)
       .then((Res) => {
         console.log(Res)
-        toast.success("Registration successful!"); // Toast for successful registration
+        toast.success("Registration successful!"); 
         navigate('/');
       }).catch((err) => {
         console.log(err)
-        toast.error("Registration failed!"); // Toast for registration failure
+        toast.error("Registration failed!"); 
+        
       })
   }
   return (
@@ -37,7 +38,7 @@ const Signup = () => {
       <form className="form" onSubmit={handleSubmit}>
         <input type="text" placeholder="Username" onChange={handleChange} name='username' required className="input-field" />
         <input type="email" placeholder="Email" onChange={handleChange} name='email' required className="input-field" />
-        <input type="password" placeholder="Password" onChange={handleChange} required className="input-field" />
+        <input type="password" name='password' placeholder="Password" onChange={handleChange} required className="input-field" />
         <button type="submit" className="submit-button">Sign up</button>
       </form>
       <p>Already have an account? <Link to="/">Login</Link></p> 

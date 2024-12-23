@@ -4,7 +4,9 @@ import { ToastContainer, toast } from 'react-toastify'; // Import ToastContainer
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 import { jwtDecode } from "jwt-decode"
-import Popover from './Popover'; // Import your Popover component
+import Popover from './popover';
+
+// import Popover from './Popover'; // Import your Popover component
 
 
 
@@ -15,13 +17,13 @@ import Popover from './Popover'; // Import your Popover component
     });
   
   // New state for modal
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [passwordChange, setPasswordChange] = useState({
-    email: "",
-    oldPassword: "",
-    newPassword: "",
-    confirmPassword: ""
-  });
+  // const [isModalOpen, setModalOpen] = useState(false);
+  // const [passwordChange, setPasswordChange] = useState({
+  //   email: "",
+  //   oldPassword: "",
+  //   newPassword: "",
+  //   confirmPassword: ""
+  // });
 
     const navigate = useNavigate();
   
@@ -30,52 +32,57 @@ import Popover from './Popover'; // Import your Popover component
       setState({ ...state, [name]: value });
     };
   
-    const handleSubmit = (E) => {
-      E.preventDefault()
-      axios.post("http://localhost:8080/register", state)
-        .then((Res) => {
-          console.log(Res)
-          toast.success("Registration successful!"); // Toast for successful registration
-          navigate('/');
-        }).catch((err) => {
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      console.log(state);
+      
+      axios.post("http://localhost:8080/login", state)
+      .then((Res) => {
+        console.log(Res);
+        let a = jwtDecode(Res.data.token);
+        console.log(a);
+        localStorage.setItem("token", Res.data.token);
+        navigate('/');
+      })
+        .catch((err) => {
           console.log(err)
-          toast.error("Registration failed!"); // Toast for registration failure
+          toast.error("Registration failed!"); 
         })
     }
 
     
 
-    const submitPassword = (e) => {
-      e.preventDefault();
-      fetch(`http://localhost:8080/changepassword`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(passwordChange)
-      })
-      .then((Res) => Res.json())
-      .then((Res) => {
-        console.log(Res);
-        toast.success("Password changed successfully!", { autoClose: 3000 });
-        setModalOpen(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Error changing password.", { autoClose: 3000 });
-      });
-    };
+  //   const submitPassword = (e) => {
+  //     e.preventDefault();
+  //     fetch(`http://localhost:8080/changepassword`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       },
+  //       body: JSON.stringify(passwordChange)
+  //     })
+  //     .then((Res) => Res.json())
+  //     .then((Res) => {
+  //       console.log(Res);
+  //       toast.success("Password changed successfully!", { autoClose: 3000 });
+  //       setModalOpen(false);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       toast.error("Error changing password.", { autoClose: 3000 });
+  //     });
+  //   };
 
-  // New function to handle password change input
-  const handlePasswordChange = (e) => {
-    const { name, value } = e.target;
-    setPasswordChange({ ...passwordChange, [name]: value });
-  };
+  // // New function to handle password change input
+  // const handlePasswordChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setPasswordChange({ ...passwordChange, [name]: value });
+  // };
 
-  // New function to toggle modal
-  const toggleModal = () => {
-    setModalOpen(!isModalOpen);
-  };
+  // // New function to toggle modal
+  // const toggleModal = () => {
+  //   setModalOpen(!isModalOpen);
+  // };
 
   return (
     <div className="login-container">
@@ -87,10 +94,10 @@ import Popover from './Popover'; // Import your Popover component
         <button type="submit" className="submit-button">Login</button>
       </form>
       <p>Don't have an account? <Link to="/signup">Sign up</Link></p> {/* Navigation to Signup */}
-      <button onClick={toggleModal} className="change-password-button">Change Password</button> {/* Button to open modal */}
+      {/* <button onClick={toggleModal} className="change-password-button">Change Password</button> Button to open modal */}
 
       {/* Modal for changing password */}
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <Popover
           isOpen={isModalOpen}
           onClose={toggleModal}
@@ -98,7 +105,8 @@ import Popover from './Popover'; // Import your Popover component
           onSubmit={submitPassword}
           passwordChange={passwordChange}
         />
-      )}
+      )} */}
+      <Popover/>
     </div>
   )
 }

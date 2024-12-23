@@ -1,9 +1,12 @@
 const { Router } = require("express");
 const bcrypt = require("bcrypt");
 const UserModel = require("../Model/userSchema");
+require("dotenv").config();
 var jwt = require("jsonwebtoken");
 const UserRouter = Router();
-require("dotenv").config();
+const nodemailer = require("nodemailer")
+
+let otpStore = {};
 
 UserRouter.post("/register", async (req, res) => {
   try {
@@ -26,18 +29,15 @@ UserRouter.post("/register", async (req, res) => {
 
 UserRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
+  
   try {
     let user = await UserModel.findOne({ email });
-    console.log(user);
-
     if (user) {
       bcrypt.compare(password, user.password, (err, result) => {
         if (result) {
-          console.log(result);
-
           const token = jwt.sign(
             { userID: user._id, username: user.username },
-            process.env.SECRET
+            process.env.secret
           );
           res.status(200).send({ msg: "User Logged in successfully", token });
         } else {
@@ -78,5 +78,65 @@ UserRouter.post("/changepassword", async (req, res) => {
     return res.status(501).send({ msg: error.message });
   }
 });
+
+
+UserRouter.post("/forgotPassword", async (req, res) => {
+  const { email } = req.body;
+  try {
+    let user = await UserModel.findOne({ email });
+    if (user) {
+      let otp = Math.round(Math.random() * 10000);
+      otpStore[email] = otp;
+      console.log(otpStore);
+
+      const transpoter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: "hardikrathod9899@gmail.com",
+          pass: "jzpg jhaj emtx ylul",
+        },
+      });
+      let mailOption = {
+        from: "hardikrathod9899@gmail.com",
+        to: email,
+        subject: "OTP for Password Reset",
+        text: `Your otp for password reset is ${otp}`,
+      };
+
+      transpoter.sendMail(mailOption, (error, info) => {
+        if (error) {
+          return res.status(400).send({ msg: "unable to send OTP" });
+        }
+        res.status(200).send({ msg: "OTP Sended Successfully" });
+      });
+    } else {
+      res.status(500).send({ msg: "Email Not Registered" });
+    }
+  } catch (error) {}
+});
+
+
+
+UserRouter.post("/resetPassword", async (req, res) => {
+  const { email, otp, newPassword } = req.body
+  console.log(otpStore)
+  console.log(email, otp, newPassword)
+  try {
+      if (otpStore[email] == otp) {
+          let hashedPassword = await bcrypt.hash(newPassword, 10)
+          let data = await UserModel.findOneAndUpdate({ email: email }, { password: hashedPassword })
+          otpStore[email] = ""
+          res.send({ msg: "Password Changed Successfully", data })
+      } else {
+          res.send({ msg: "OTP Incorrect" })
+      }
+  } catch (error) {
+      res.status(501).send({ msg: error.message });
+  }
+})
+
+
+
+
 
 module.exports = UserRouter;

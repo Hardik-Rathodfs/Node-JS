@@ -5,9 +5,12 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Forgotpassword from './Forgotpassword';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Otppass from './Otppass';
 
 const darkTheme = createTheme({
   palette: {
@@ -45,44 +48,52 @@ const darkTheme = createTheme({
   },
 });
 
-const PasswordChangeForm = () => {
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+const Forgotpassword = () => {
   const [open, setOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    email: '',
-    oldPassword: '',
-    newPassword: '',
-    confirmPassword: ''
+  const [showOtpFields, setShowOtpFields] = useState(false);
+  const [state, setState] = useState({
+    password: "",
+    email: "",
+    otp: "",
+    newPassword: ""
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setState({ ...state, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch('http://localhost:8080/changepassword', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+    axios
+      .post("http://localhost:8080/forgotPassword", state)
+      .then((Res) => {
+        console.log(Res);
+        setShowOtpFields(true);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-      const data = await response.json();
-      console.log(data);
-    } catch (err) {
-      console.error(err);
-    }
   };
 
   return (
     <>
       <Button onClick={() => setOpen(true)} color="primary">
-        Change Password
+        Forgot Password
       </Button>
       <ThemeProvider theme={darkTheme}>
-        <Dialog 
-          open={open} 
-          onClose={() => setOpen(false)} 
-          maxWidth="sm" 
+        <Dialog
+          open={open}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={() => setOpen(false)}
+          maxWidth="sm"
           fullWidth
           PaperProps={{
             style: {
@@ -96,7 +107,7 @@ const PasswordChangeForm = () => {
             color: '#fff',
             borderBottom: '1px solid #404040'
           }}>
-            Change Password
+            Forgot Password
           </DialogTitle>
           <DialogContent sx={{ backgroundColor: '#1e1e1e' }}>
             <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -106,33 +117,6 @@ const PasswordChangeForm = () => {
                   label="Email"
                   name="email"
                   type="email"
-                  required
-                  variant="outlined"
-                  onChange={handleChange}
-                />
-                <TextField
-                  fullWidth
-                  label="Current Password"
-                  name="oldPassword"
-                  type="password"
-                  required
-                  variant="outlined"
-                  onChange={handleChange}
-                />
-                <TextField
-                  fullWidth
-                  label="New Password"
-                  name="newPassword"
-                  type="password"
-                  required
-                  variant="outlined"
-                  onChange={handleChange}
-                />
-                <TextField
-                  fullWidth
-                  label="Confirm New Password"
-                  name="confirmPassword"
-                  type="password"
                   required
                   variant="outlined"
                   onChange={handleChange}
@@ -150,16 +134,19 @@ const PasswordChangeForm = () => {
                     }
                   }}
                 >
-                  Update Password
+              forgot password
                 </Button>
               </Stack>
             </Box>
-            <Forgotpassword/>
+            
           </DialogContent>
+          {showOtpFields && (
+              <Otppass />
+            )}
         </Dialog>
       </ThemeProvider>
     </>
   );
 };
 
-export default PasswordChangeForm;
+export default Forgotpassword;

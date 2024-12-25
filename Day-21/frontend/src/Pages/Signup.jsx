@@ -23,17 +23,20 @@ const Signup = () => {
     axios.post("http://localhost:8080/register", state)
       .then((Res) => {
         console.log(Res)
-        toast.success("Registration successful!"); 
-        navigate('/');
+        setTimeout(() => {
+          toast.success("Registration successful!"); 
+          navigate('/');
+        }, 100); // Delay toast for 100ms
       }).catch((err) => {
         console.log(err)
-        toast.error("Registration failed!"); 
-        
+        setTimeout(() => {
+          toast.error("Registration failed!"); 
+        }, 100); // Delay toast for 100ms
       })
   }
   return (
     <div className="signup-container">
-      <ToastContainer /> {/* Add ToastContainer to render toasts */}
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} closeOnClick pauseOnHover draggable />
       <h2>Signup</h2>
       <form className="form" onSubmit={handleSubmit}>
         <input type="text" placeholder="Username" onChange={handleChange} name='username' required className="input-field" />

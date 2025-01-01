@@ -1,88 +1,124 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Aside from './Aside';
+import { useNavigate } from 'react-router';
+import { toast, ToastContainer } from 'react-toastify';
 
 const WriteBlog = () => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [blogs, setBlogs] = useState([]);
-  const [error, setError] = useState(''); // For error handling
+  const [token, setToken] = useState((localStorage.getItem("Token")) || null);
+
+  console.log(token)
+
+  const today = new Date();
+
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const month = monthNames[today.getMonth()];
+  const date = today.getDate();
+  const year = today.getFullYear();
+
+  
+  let all = date + " " + month + " " + year;
+
+  const navigate = useNavigate();
+
+  const [fromdata, setState] = useState({
+    title: "",
+    description: "",
+    image: "",
+    all: all
+  });
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newBlog = { title, content, imageUrl };
-
+    console.log(fromdata);
+    
+    
     try {
-      const response = await axios.post('http://localhost:8080/blogs', newBlog);
-      setBlogs([...blogs, response.data]);
-      setTitle('');
-      setContent('');
-      setImageUrl('');
-      setError(''); // Clear error message on success
-    } catch (err) {
-      console.error("Error saving blog:", err);
-      setError('Failed to save the blog. Please try again.');
+      const response = await fetch(`http://localhost:8080/createblog`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(fromdata),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        toast.success("Blog submitted successfully!");
+        setTimeout(() => {
+          navigate("/");
+        }, 4000);
+      } else {
+        console.error("Failed to add BLog Data", result.message);
+        toast.error("Failed to add BLog Data!!",result.message);
+      }
+    } catch (error) {
+      console.error("Error during submission:", error);
+      toast.error("Error during submission !",error);
     }
+    
+    setState({
+    title: "",
+    description: "",
+    image: "",
+    });
   };
 
+  const handleChange = async (e) => {
+    let { name, value } = e.target;
+    setState({ ...fromdata, [name]: value });
+  };
+
+
+
   return (
-    <>   
+    <>
+   
     <Aside/>
+    <ToastContainer/>
      <div className="container">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Blog Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+           name="title"
+          onChange={handleChange}
           required
         />
         <textarea
           placeholder="Blog Content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
+          name='description'
+          onChange={handleChange}
           required
         />
         <input
           type="text"
           placeholder="Image URL"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
+          name='image'
+          onChange={handleChange}
           required
         />
         <button type="submit">Add Blog</button>
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error message */}
-
-      <h2>Blogs</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Content</th>
-            <th>Image</th>
-          </tr>
-        </thead>
-        <tbody>
-          {blogs.map((blog) => (
-            <tr key={blog.id}> {/* Assuming backend returns unique 'id' */}
-              <td>{blog.title}</td>
-              <td>{blog.content}</td>
-              <td>
-                <img
-                  src={blog.imageUrl || 'default-image-url.jpg'} // Fallback image
-                  alt={blog.title}
-                  style={{ width: '100px' }}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+ 
     </div>
     </>
-
   );
 };
 

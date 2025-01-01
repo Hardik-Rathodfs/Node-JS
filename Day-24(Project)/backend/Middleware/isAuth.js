@@ -6,7 +6,7 @@ const isAuth = (req, res, next) => {
     let token = req.headers.authorization.split(" ")[1];
     console.log(token);
     if (token) {
-      let decode = jwt.verify(token, process.env.SECRET);
+      let decode = jwt.verify(token, process.env.secret);
       req.body.userId = decode.userID;
       next();
     } else {

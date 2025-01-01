@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import image1 from '../image1/img_1.jpg'
 import image2 from '../image1/img_2.jpg'
 import image3 from "../image1/img_3.jpg"
@@ -24,6 +24,25 @@ import { Link } from 'react-router-dom'
 import Aside from './Aside'
 
 const Home = () => {
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/allBlogs"); 
+        if (!response.ok) {
+          throw new Error("Failed to fetch blogs");
+        }
+        const data = await response.json();
+        setBlogs(data);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
   return (
     <div>
        <>
@@ -40,6 +59,25 @@ const Home = () => {
       </div>
     </div>
     <div className="card-columns">
+     {/*  */}
+     
+     {blogs.map((el) => {
+       return (
+         <div className="card" key={el.id}>
+           <img
+             className="card-img-top probootstrap"
+             src={el.image}
+             alt="Card image cap"
+           />
+           <h4>{el.date}</h4>
+           <div className='textbox'>
+             <h4>{el.title}</h4>
+             <p>{el.description}</p>
+           </div>
+         </div>
+       );
+     })}
+     {/*  */}
       <div className="card">
         <Link to="/blog/1">
           <img

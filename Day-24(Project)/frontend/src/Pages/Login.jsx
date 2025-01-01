@@ -35,6 +35,11 @@ const Login = () => {
   
       const result = await response.json();
       if (response.ok) {
+        const token = result.token;
+        console.log("Token:", token);
+
+        localStorage.setItem("Token", token);
+
         toast.success("Login Successful");
         setTimeout(() => {
           navigate("/");

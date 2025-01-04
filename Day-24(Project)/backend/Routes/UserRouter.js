@@ -1,9 +1,9 @@
 const { Router } = require("express");
 const bcrypt = require("bcrypt");
-const UserModel = require("../Model/UserSchema");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
+const UserModel = require("../model/UserSchema");
 const UserRouter = Router();
 
 let otpStore = {};
@@ -53,6 +53,8 @@ UserRouter.post("/login", async (req, res) => {
 
 UserRouter.post("/changepassword", async (req, res) => {
   const { email, oldpassword, newpassword, confirmpassword } = req.body;
+  console.log(req.body);
+  
   try {
     let user = await UserModel.findOne({ email: email });
     if (!user) {
@@ -62,7 +64,7 @@ UserRouter.post("/changepassword", async (req, res) => {
     if (result) {
       if (newpassword == confirmpassword) {
         let hash = await bcrypt.hash(newpassword, 5);
-        let data = await UserModel.finOneAndUpdate(
+        let data = await UserModel.findOneAndUpdate(
           { email: email },
           { password: hash }
         );

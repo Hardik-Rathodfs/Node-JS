@@ -93,6 +93,7 @@ const WriteBlog = () => {
     <Aside/>
     <ToastContainer/>
      <div className="container">
+    <h1 style={{textAlign:"center"}}>Add Blogs</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

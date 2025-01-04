@@ -33,7 +33,9 @@ const Popover = () => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
+  console.log(state);
   const handleSubmit = (e) => {
+    
     e.preventDefault();
     fetch(`http://localhost:8080/changepassword`, {
       method: "POST",
@@ -41,6 +43,7 @@ const Popover = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(state),
+
     })
       .then((Res) => Res.json())
       .then((Res) => {

@@ -63,12 +63,14 @@ const Home = () => {
      
      {blogs.map((el) => {
        return (
-         <div className="card" key={el.id}>
+         <div  div className="card" key={el.id}>
+          <Link to={`/allblogs/${el._id}`}> 
            <img
              className="card-img-top probootstrap"
              src={el.image}
              alt="Card image cap"
            />
+           </Link>
            <h4>{el.date}</h4>
            <div className='textbox'>
              <h4>{el.title}</h4>
@@ -79,7 +81,7 @@ const Home = () => {
      })}
      {/*  */}
       <div className="card">
-        <Link to="/blog/1">
+      
           <img
             className="card-img-top probootstrap"
             src={image1}
@@ -90,10 +92,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/2">
           <img
             className="card-img-top probootstrap"
             src={image2}
@@ -104,10 +104,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/3">
           <img
             className="card-img-top probootstrap"
             src={image3}
@@ -118,10 +116,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card img-loaded">
-        <Link to="/blog/4">
           <img
             className="card-img-top probootstrap"
             src={image4}
@@ -132,10 +128,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/5">
           <img
             className="card-img-top probootstrap"
             src={image5}
@@ -146,10 +140,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/6">
           <img
             className="card-img-top probootstrap"
             src={image6}
@@ -160,10 +152,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/7">
           <img
             className="card-img-top probootstrap"
             src={image7}
@@ -174,10 +164,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/8">
           <img
             className="card-img-top probootstrap"
             src={image8}
@@ -188,10 +176,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/9">
           <img
             className="card-img-top probootstrap"
             src={image9}
@@ -202,10 +188,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/10">
           <img
             className="card-img-top probootstrap"
             src={image10}
@@ -216,10 +200,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/11">
           <img
             className="card-img-top probootstrap"
             src={image11}
@@ -230,10 +212,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/12">
           <img
             className="card-img-top probootstrap"
             src={image12}
@@ -244,10 +224,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/13">
           <img
             className="card-img-top probootstrap"
             src={image13}
@@ -258,10 +236,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/14">
           <img
             className="card-img-top probootstrap"
             src={image14}
@@ -272,10 +248,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/15">
           <img
             className="card-img-top probootstrap"
             src={image15}
@@ -286,10 +260,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/16">
           <img
             className="card-img-top probootstrap"
             src={image16}
@@ -300,10 +272,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/17">
           <img
             className="card-img-top probootstrap"
             src={image17}
@@ -314,10 +284,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/18">
           <img
             className="card-img-top probootstrap"
             src={image18}
@@ -328,10 +296,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/19">
           <img
             className="card-img-top probootstrap"
             src={image19}
@@ -342,10 +308,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/20">
           <img
             className="card-img-top probootstrap"
             src={image20}
@@ -356,10 +320,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/blog/21">
           <img
             className="card-img-top probootstrap"
             src={image21}
@@ -370,7 +332,6 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-        </Link>
       </div>
     </div>
     <div className="container-fluid d-md-none">

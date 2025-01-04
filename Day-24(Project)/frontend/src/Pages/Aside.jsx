@@ -18,12 +18,6 @@ const Aside = () => {
       <a href="index.html" className="mb-2 d-block probootstrap-logo">
         Aside
       </a>
-      <p className="mb-0">
-        Another free html5 bootstrap 4 template by{" "}
-        <a href="https://uicookies.com/" target="_blank">
-          uiCookies
-        </a>
-      </p>
     </div>
     <div className="probootstrap-overflow">
       <nav className="probootstrap-nav">
@@ -34,18 +28,14 @@ const Aside = () => {
             Home
           </Link>
           </li>
-          <li >
-            <Link to={"/blogs"}>
-              Blogs
-            </Link>
-          </li>
+     
           <li >
             <Link to={"/write-blog"}>
               Write Blog
             </Link>
           </li>
           <li >
-            <Link to={"/my-blogs"}>
+            <Link to={"/my-blog"}>
               My Blogs
             </Link>
           </li>

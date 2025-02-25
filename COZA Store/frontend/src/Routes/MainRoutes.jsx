@@ -15,7 +15,6 @@ const MainRoutes = () => {
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/forgotpassword" element={<ForgotPass/>}/>
         <Route path="/admin" element={<Admin/>}></Route>
-        
         </Routes>
     </div>
   )

@@ -46,18 +46,6 @@ BlogRouter.get("/allBlogs/:id", async (req, res) => {
   }
 });
 
-BlogRouter.patch("/edit/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    let data = await BlogModel.findById(id);
-    let a = data.like + 1;
-    let d = await BlogModel.findByIdAndUpdate(id, { like: a });
-    res.status(200).send({ d });
-  } catch (error) {
-    res.status(501).send({ msg: error.message });
-  }
-});
-
 BlogRouter.delete("/delete",async(req,res)=>{
 
   try {
@@ -81,6 +69,20 @@ BlogRouter.delete("/delete",async(req,res)=>{
         res.status(500).send({msg:"An error occurred while deleting the blog.",error: error.message,})
   }
 })
+
+BlogRouter.patch("/edit/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    let data = await BlogModel.findById(id);
+    let a = data.like + 1;
+    let d = await BlogModel.findByIdAndUpdate(id, { like: a });
+    res.status(200).send({ d });
+  } catch (error) {
+    res.status(501).send({ msg: error.message });
+  }
+});
+
+
 
 BlogRouter.get("/editget/:id",isAuth,async(req,res)=>{
   try {

@@ -42,7 +42,7 @@ const Forgotpassword = () => {
   const handleSubmit = (E) => {
     E.preventDefault();
     axios
-      .post("http://localhost:8080/forgotPassword", state)
+      .post("https://blogapp-backend-hpen.onrender.com/forgotPassword", state)
       .then((Res) => {
         console.log(Res);
         setShowOtpFields(true);

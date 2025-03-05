@@ -10,7 +10,7 @@ const Single = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/allBlogs/${id}`);
+        const response = await fetch(`https://blogapp-backend-hpen.onrender.com/allBlogs/${id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch blog");
         }
@@ -25,7 +25,11 @@ const Single = () => {
   }, [id]);
 
   if (!blog) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loader">
+        <img src="https://media-hosting.imagekit.io//8db333918631479f/1488.gif?Expires=1736162164&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=dLNirKyoDbFYe5tYZumwX1HmrY3YxWMedUoPN4Vbf7xdzQJD8x7QjwQGP7GAHJylHXcF3RnZwXeW5AYwvSj~A3a1IOB9klyDaku52UxIrFYohvnHYJi7O~FUZFYR~2zkzNOAAxiXZyL4wZBGAqBDBHVakJasYgctYu7DQIJjQmF~tOt-Xl5HAen6bRRtUbOyjngYL~AYfipMbf~XvzHE4bs4-7UpOUhg4g2ncIl3-lSWCTLjtuK2jzKVDmxLRKNIvspfWOiPG3QhQn2-X8bElGQrgWXkZk04xDCJSt9X0AFxJIL7bZP1IwtItCZqpBCnY8QiC0qsLaV4AYj7VFaliA__" alt="Loading..." />
+      </div>
+    );
   }
 
   return (

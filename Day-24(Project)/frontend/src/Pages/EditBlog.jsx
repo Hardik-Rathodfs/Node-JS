@@ -62,7 +62,7 @@ const EditBlog = () => {
     const fetchBlog = async () => {
       const token = localStorage.getItem("Token");
       try {
-        const response = await fetch(`http://localhost:8080/editget/${id}`, {
+        const response = await fetch(`https://blogapp-backend-hpen.onrender.com/editget/${id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -91,7 +91,7 @@ const EditBlog = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:8080/editblog`, {
+      const response = await fetch(`https://blogapp-backend-hpen.onrender.com/editblog`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

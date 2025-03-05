@@ -15,7 +15,7 @@ const MyBlogs = () => {
   useEffect(() => {
     const fetchUserBlogs = async () => {
       try {
-        const response = await fetch("http://localhost:8080/myBlogs", {
+        const response = await fetch("https://blogapp-backend-hpen.onrender.com/myBlogs", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -44,7 +44,7 @@ const MyBlogs = () => {
   {
     
     try {
-        const response = await fetch(`http://localhost:8080/delete`, {
+        const response = await fetch(`https://blogapp-backend-hpen.onrender.com/delete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

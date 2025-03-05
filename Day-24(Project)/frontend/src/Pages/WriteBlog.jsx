@@ -49,7 +49,7 @@ const WriteBlog = () => {
     
     
     try {
-      const response = await fetch(`http://localhost:8080/createblog`, {
+      const response = await fetch(`https://blogapp-backend-hpen.onrender.com/createblog`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

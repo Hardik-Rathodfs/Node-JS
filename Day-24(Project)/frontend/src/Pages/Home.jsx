@@ -29,7 +29,7 @@ const Home = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch("http://localhost:8080/allBlogs"); 
+        const response = await fetch("https://blogapp-backend-hpen.onrender.com/allBlogs"); 
         if (!response.ok) {
           throw new Error("Failed to fetch blogs");
         }
@@ -105,7 +105,7 @@ const Home = () => {
           
           </div>
       </div>
-      <div className="card">
+      {/* <div className="card">
           <img
             className="card-img-top probootstrap"
             src={image3}
@@ -284,8 +284,8 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-      </div>
-      <div className="card">
+      </div> */}
+      {/* <div className="card">
           <img
             className="card-img-top probootstrap"
             src={image18}
@@ -332,7 +332,7 @@ const Home = () => {
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non ea quo reprehenderit sapiente iste iure atque qui, repellendus similique ad temporibus, at, quidem corrupti porro quas mollitia voluptate soluta!</p>
           
           </div>
-      </div>
+      </div> */}
     </div>
     <div className="container-fluid d-md-none">
       <div className="row">

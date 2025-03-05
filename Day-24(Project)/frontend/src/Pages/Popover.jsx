@@ -37,7 +37,7 @@ const Popover = () => {
   const handleSubmit = (e) => {
     
     e.preventDefault();
-    fetch(`http://localhost:8080/changepassword`, {
+    fetch(`https://blogapp-backend-hpen.onrender.com/changepassword`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

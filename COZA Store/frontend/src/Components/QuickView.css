@@ -1,0 +1,310 @@
+/* Modal Styles */
+.wrap-modal1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.show-modal1 {
+  visibility: visible;
+  opacity: 1;
+}
+
+.overlay-modal1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+/* Modal Content */
+.bg0 {
+  background-color: #fff;
+  position: relative;
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.how-pos3-parent {
+  position: relative;
+}
+
+.how-pos3 {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.how-pos3 img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Product Image Gallery */
+.wrap-slick3 {
+  position: relative;
+}
+
+.slick3-dots {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.slick3-dots li {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.slick3-dots li img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.slick3-dot-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.slick-active .slick3-dot-overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.wrap-slick3-arrows {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.arrow-slick3 {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.prev-slick3 {
+  position: absolute;
+  left: 0;
+}
+
+.next-slick3 {
+  position: absolute;
+  right: 0;
+}
+
+/* Product Details */
+.mtext-105 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.mtext-106 {
+  font-size: 20px;
+  color: #e65540;
+  font-weight: 500;
+}
+
+.stext-102 {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #666;
+  margin: 20px 0;
+}
+
+/* Size and Color Selectors */
+.rs1-select2 {
+  position: relative;
+  width: 100%;
+}
+
+.js-select2 {
+  width: 100%;
+  height: 40px;
+  padding: 0 20px;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Social Share Icons */
+.fs-14 {
+  font-size: 14px;
+}
+
+.cl3 {
+  color: #333;
+}
+
+.hov-cl1:hover {
+  color: #e65540;
+}
+
+.trans-04 {
+  transition: all 0.4s;
+}
+
+.lh-10 {
+  line-height: 1;
+}
+
+.p-lr-5 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.p-tb-2 {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.m-r-8 {
+  margin-right: 8px;
+}
+
+/* Quantity Controls */
+.wrap-num-product {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  padding: 0 10px;
+}
+
+.btn-num-product-down,
+.btn-num-product-up {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+.btn-num-product-down:hover,
+.btn-num-product-up:hover {
+  color: #e65540;
+}
+
+.num-product {
+  width: 50px;
+  text-align: center;
+  border: none;
+  font-size: 16px;
+  color: #333;
+  background: transparent;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.social-icons svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Add to Cart Button */
+.js-addcart-detail {
+  background-color: #e65540;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.js-addcart-detail:hover {
+  background-color: #d44a36;
+}
+
+/* Social Share */
+.respon7 {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.bor9 {
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+.tooltip100 {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.tooltip100:hover::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .col-md-6 {
+    width: 100%;
+  }
+  
+  .p-l-25,
+  .p-r-30 {
+    padding: 0 15px;
+  }
+  
+  .p-r-50 {
+    padding-right: 15px;
+  }
+  
+  .p-l-100 {
+    padding-left: 15px;
+  }
+} 

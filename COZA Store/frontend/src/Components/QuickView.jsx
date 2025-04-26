@@ -42,7 +42,6 @@ const QuickView = ({ product, isOpen, onClose }) => {
             <button className="how-pos3 hov3 trans-04 js-hide-modal1" onClick={onClose}>
               <img src={CLOSE} alt="CLOSE" />
             </button>
-
             <div className="row">
               <div className="col-md-6 col-lg-7 p-b-30">
                 <div className="p-l-25 p-r-30 p-lr-0-lg">

@@ -1,5 +1,4 @@
 import React from 'react'
-
 import slider1 from '../assets/images/slide-01.jpg'
 import slider2 from '../assets/images/slide-02.jpg'
 import slider3 from '../assets/images/slide-03.jpg'
@@ -128,7 +127,7 @@ const Corosoul = () => {
                             data-delay={800}
                           >
                             <h2 className="ltext-201 cl2 p-t-19 p-b-43 respon1">
-                              New arrivals
+                              New arrival
                             </h2>
                           </div>
                           <div

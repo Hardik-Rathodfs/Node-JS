@@ -26,7 +26,7 @@ const MainRoutes = () => {
           </PrivateRoute>
         }/>
       </Routes>
-      <Footer />
+      <Footer/>
     </div>
   )
 }
